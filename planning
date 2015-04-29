@@ -1,0 +1,36 @@
+user stories
+	- public take a working bike from docking station
+	- public check when no bikes from docking station
+	- public return a bike to docking station
+	- public report when a bike is broken 
+	- we only release working bikes from docking station
+	- we need to accept all working and broken bikes in docking station
+	- we cannot accept more bikes than capacity in docking station
+	- we need to have vans take broken bikes to garages
+	- we need to have vans collect working bikes from garages and distribute to docking stations
+
+We are building a system that manages bikes that can be rented by users from docking stations and returned there at the end of the rental. The bikes can break while being used, in which case they will not be available for rental after they are returned. There is a garage that can fix broken bikes. A van is used to move broken bikes from the stations to the garage. It can also be used to take fixed bikes back to the station(s). The van, all stations and the garage have fixed capacity, so they cannot take more bikes than they can hold.
+
+
+potential classes, interactions and key features
+	- Public user
+		>> Properties - usage status (already have a bike)
+		>> Methods - rent a bike, return a bike, report when broken, check availability of bike
+	- Bike
+		>> Properties - maintenance status (e.g. is it broken? true/false), availability (true/false), (standard rental time)
+		>> Methods - Public user can rent it (take), it needs to know where it is (e.g. in use, in docking station), it needs to know if it is broken.
+	- Docking station
+		>> Properties - total capacity, number of available bikes to take, number of broken bikes, number of available spots to return 
+		>> Methods - release bikes (only if working), check available bikes to take, check for broken bikes, check van capacity to give bike, give bike to van, collecting bikes from van
+	- Van 
+		>> Properties - total capacity, available slots for bikes, usage status (is it on the move?), number of fixed bikes and number of broken bikes
+		>> Methods - check its own availability, check if space in docking station, check if space in garage, return bikes to docking station from garage, collect bikes from docking station and takes to garage
+	- Garage
+		>> Properties - total capacity, available slots for bikes, number of fixed bikes and number of broken bikes
+		>> Methods - check its own capacity, receive broken bikes from van, fix broken bikes, return broken bikes to van
+
+qu's
+ - what properties each need?
+ - is there any inheritance?
+
+ feature tests and scenario tests in spec
