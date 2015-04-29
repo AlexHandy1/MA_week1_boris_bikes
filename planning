@@ -13,7 +13,7 @@ We are building a system that manages bikes that can be rented by users from doc
 
 
 potential classes, interactions and key features
-	- Public user
+	- Public user (may not need this - IRB is interface)
 		>> Properties - usage status (already have a bike)
 		>> Methods - rent a bike, return a bike, report when broken, check availability of bike
 	- Bike
