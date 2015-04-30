@@ -7,13 +7,13 @@ describe DockingStation do
 	describe 'dock' do 
 		it "should raise an error when full" do
 			docking_station = DockingStation.new 30
-			subject.capacity.times{subject.dock Bike.new}
-			expect{subject.dock Bike.new}.to raise_error "NO MORE BIKES PLEASE"
+			subject.capacity.times{subject.dock double(:bike)}
+			expect{subject.dock double(:bike)}.to raise_error "NO MORE BIKES PLEASE"
 		end
 	end
 
 	it 'releases working bikes' do
-	    subject.dock Bike.new
+	    subject.dock Bike.new #replace with a double
 	    bike = subject.release_bike
 	    expect(bike).to be_working
   	end
@@ -23,7 +23,7 @@ describe DockingStation do
 			expect {subject.release_bike}.to raise_error "No Bikes Available"
 		end
 		it 'raises an error when there is a broken bike' do
-			bike = Bike.new
+			bike = Bike.new #replace with a double
 			bike.report_broken
 			subject.dock bike
 			expect { subject.release_bike }.to raise_error 'Bike not working'
