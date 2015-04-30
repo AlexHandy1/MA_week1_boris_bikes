@@ -9,8 +9,8 @@ feature 'Member of public returns bike' do
 
 	scenario 'NO I\'M FULL OF BIKES' do
 		#this needs to change to something for @capacity
-		docking_station.capacity.times {docking_station.dock Bike.new}
-		expect { docking_station.dock Bike.new }.to raise_error 'NO MORE BIKES PLEASE'
+		docking_station.capacity.times {docking_station.dock double :bike}
+		expect { docking_station.dock double :bike }.to raise_error 'NO MORE BIKES PLEASE'
 	end
 
 	scenario 'bike can be reported broken when returned' do

@@ -4,7 +4,7 @@ feature "public accesses bike from docking station" do
 	let(:docking_station) {DockingStation.new}
 
 	scenario "releases a working bike from the docking station" do
-		docking_station.dock Bike.new
+		docking_station.dock double :bike, broken?: false, working?: true
 		bike = docking_station.release_bike
 		expect(bike).to be_working
 	end
