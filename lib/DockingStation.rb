@@ -1,3 +1,4 @@
+require 'byebug'
 require_relative 'Bike'
 
 class DockingStation
@@ -14,12 +15,11 @@ class DockingStation
 
 	def release_bike
 		fail "No Bikes Available" if empty?
+		fail "Bike not working" if bikes.last.broken?
 		bikes.pop
 	end
-
-	private 
-
 	attr_reader :bikes
+	private 
 
 	def empty?
 		bikes.empty?
