@@ -6,8 +6,9 @@ require 'DockingStation'
 
 feature 'Member of public returns bike' do
 	scenario 'NO I\'M FULL OF BIKES' do
-		docking_station = DockingStation.new
-		DockingStation::DEFAULT_CAPACITY.times {docking_station.dock Bike.new}
+		docking_station = DockingStation.new 20
+		#this needs to change to something for @capacity
+		docking_station.capacity.times {docking_station.dock Bike.new}
 		expect { docking_station.dock Bike.new }.to raise_error 'NO MORE BIKES PLEASE'
 	end
 end
