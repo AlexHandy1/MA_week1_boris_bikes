@@ -1,10 +1,13 @@
+# As a maintainer of the system,
+# So that I can control the distribution of bikes,
+# I'd like docking stations not to accept more bikes than their capacity.
 require 'DockingStation'
 
-feature "member of public returns the bike" do
-	scenario "bike cannot be docked when station is full" do
+
+feature 'Member of public returns bike' do
+	scenario 'NO I\'M FULL OF BIKES' do
 		docking_station = DockingStation.new
-		capacity = DockingStation::DEFAULT_CAPACITY
-		capacity.times {docking_station.dock Bike.new}
-		expect{ docking_station.dock Bike.new }.to raise_error "Docking Station Full"
+		DockingStation::DEFAULT_CAPACITY.times {docking_station.dock Bike.new}
+		expect { docking_station.dock Bike.new }.to raise_error 'NO MORE BIKES PLEASE'
 	end
 end
