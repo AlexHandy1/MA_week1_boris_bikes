@@ -1,0 +1,55 @@
+require 'bike_container'
+
+shared_examples_for BikeContainer do
+  it 'has a default capacity when initialized' do
+    expect(subject.capacity).to eq BikeContainer::DEFAULT_CAPACITY
+  end
+end
+
+class BikeContainerTest; include BikeContainer; end
+#gives an instance of the class to run tests against
+
+#this then imports all the tests into a shared example to make sure it has pulled them in
+describe BikeContainerTest do
+  it_behaves_like BikeContainer
+
+  describe 'capacity' do
+    it "can be overriden on initialize" do
+      random_capacity = Random.rand(1..100)
+      subject = described_class.new random_capacity
+      expect(subject.capacity).to eq random_capacity
+    end
+  end
+
+  describe 'add_bike' do
+    it 'receives a bike' do
+      subject.add_bike double :bike
+      expect(subject).to_not be_empty #question mark in tutorial is an error - can correct
+    end
+
+    it 'raises an error when full' do
+      subject.capacity.times {subject.add_bike double(:bike)}
+      expect{subject.add_bike double(:bike)}.to raise_error "#{described_class.name} full"
+    end
+  end
+
+  describe 'remove_bike' do
+    let (:bike) {Bike.new}
+    before(:each) {subject.add_bike bike} #why don't you use a double here?
+
+    it "removes a bike" do
+      expect(subject.remove_bike).to eq bike
+    end
+
+    it "leaves an empty bike container" do
+      subject.remove_bike
+      expect(subject).to be_empty
+    end
+
+    it "raises an error when no bikes to remove" do
+      subject.remove_bike
+      expect{subject.remove_bike}.to raise_error "#{described_class.name} empty"
+    end
+  end
+end
+
